@@ -1,0 +1,48 @@
+{
+  "data_window": [
+    "2012-10-10",
+    "2022-10-07"
+  ],
+  "years_of_data": 10.0,
+  "stocks": 50,
+  "stocks_with_9plus_years": 48,
+  "trading_days": 2463,
+  "corporate_action_fixes": {
+    "TATASTEEL": "split not adjusted in source: price doubles overnight",
+    "HDFC": "stale/incorrect prices before this date: flat for days, then +50% jump",
+    "ADANIENT": "2015 demerger not adjusted in source: -39% on the record date"
+  },
+  "segments": {
+    "Average": 23,
+    "Steady compounders": 13,
+    "Laggards / high risk": 12,
+    "High performers": 2
+  },
+  "consistent_high_performers": [
+    "ADANIENT",
+    "BAJFINANCE",
+    "BRITANNIA",
+    "BAJAJFINSV",
+    "ASIANPAINT",
+    "TITAN",
+    "HCLTECH",
+    "JSWSTEEL",
+    "MARUTI",
+    "UPL",
+    "RELIANCE",
+    "INFY",
+    "HDFCBANK",
+    "APOLLOHOSP"
+  ],
+  "n_consistent_high_performers": 14,
+  "correlation_window": [
+    "2017-11-20",
+    "2022-10-07"
+  ],
+  "correlation_days": 1207,
+  "n_cross_sector_pairs": 1109,
+  "n_low_corr_pairs_stable": 13,
+  "n_cross_sector_pairs_below_0.15": 17,
+  "n_cross_sector_pairs_below_0.20": 114,
+  "median_pairwise_corr": 0.306
+}

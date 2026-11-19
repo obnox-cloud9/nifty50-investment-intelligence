@@ -1,0 +1,14 @@
+stock_a,stock_b,corr,sector_a,sector_b,cross_sector,max_yearly_corr
+CIPLA,EICHERMOT,0.1175,Healthcare,Automobile,True,0.1889
+BRITANNIA,POWERGRID,0.1179,FMCG,Power,True,0.2445
+NESTLEIND,ONGC,0.1188,FMCG,Oil & Gas,True,0.2216
+CIPLA,HDFCBANK,0.1225,Healthcare,Financials,True,0.1819
+DRREDDY,INDUSINDBK,0.1251,Healthcare,Financials,True,0.2203
+ASIANPAINT,ONGC,0.1312,Consumer Durables,Oil & Gas,True,0.2315
+DRREDDY,ITC,0.1341,Healthcare,FMCG,True,0.2666
+COALINDIA,NESTLEIND,0.1344,Metals & Mining,FMCG,True,0.2476
+DRREDDY,POWERGRID,0.1344,Healthcare,Power,True,0.2772
+HINDUNILVR,POWERGRID,0.1418,FMCG,Power,True,0.2455
+CIPLA,HDFCLIFE,0.1421,Healthcare,Financials,True,0.2194
+BAJFINANCE,CIPLA,0.1423,Financials,Healthcare,True,0.2118
+BAJFINANCE,DRREDDY,0.147,Financials,Healthcare,True,0.2611
