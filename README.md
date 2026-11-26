@@ -48,7 +48,7 @@ IndusInd Bank's +45% on 26 Mar 2020 really happened, so it stays.
 ## Dashboard
 
 - **Interactive HTML:** `outputs/dashboard.html` has the risk/return scatter, sector growth, sector table, correlation heatmap, high performers and the pair list. Open it in any browser.
-- **Power BI:** `powerbi/` has star-schema CSVs (fact table plus stock dimension) and `POWERBI_GUIDE.md`, which covers the model, the DAX measures and the page layout for building the `.pbix`.
+- **Power BI:** `powerbi/NIFTY50_Dashboard.pbip` is a Power BI Project with 4 pages: Overview, Sectors, Volatility & drawdowns, and High performers & pairs. Open it in Power BI Desktop and click **Refresh**. It loads the CSVs straight from this repo on GitHub, so there are no file paths to set up. The first refresh may ask how to connect to `raw.githubusercontent.com`: choose **Anonymous**. `POWERBI_GUIDE.md` lists the model and DAX measures. To share a single file, use File → Save as → `.pbix`.
 
 ## Run
 
@@ -65,7 +65,7 @@ src/data.py            download, load, sector map, corporate-action fixes
 src/analysis.py        metrics, segmentation, consistency, correlation, selection rules
 src/visuals.py         PNG charts and the HTML dashboard
 outputs/               CSV tables, summary.json, plots/, dashboard.html
-powerbi/               fact/dim CSVs and the Power BI build guide
+powerbi/               Power BI project (.pbip), fact/dim CSVs, model guide
 ```
 
 Daily data ends in Oct 2022. To extend it, drop newer CSVs with the same columns into `data/raw/`.

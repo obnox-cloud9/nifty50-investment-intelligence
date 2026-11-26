@@ -1,0 +1,221 @@
+{
+  "config": "{\"version\": \"5.43\", \"themeCollection\": {}, \"activeSectionIndex\": 0, \"defaultDrillFilterOtherVisuals\": true, \"linguisticSchemaSyncVersion\": 0, \"settings\": {\"useNewFilterPaneExperience\": true, \"allowChangeFilterTypes\": true}, \"objects\": {}}",
+  "layoutOptimization": 0,
+  "sections": [
+    {
+      "name": "section01",
+      "displayName": "Overview",
+      "displayOption": 1,
+      "width": 1280,
+      "height": 720,
+      "visualContainers": [
+        {
+          "x": 20,
+          "y": 10,
+          "z": 1,
+          "width": 900,
+          "height": 50,
+          "config": "{\"name\": \"t001\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 10, \"z\": 1, \"width\": 900, \"height\": 50}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"NIFTY-50 risk and return, Oct 2012 \\u2013 Oct 2022\", \"textStyle\": {\"fontSize\": \"20pt\", \"fontWeight\": \"bold\"}}]}]}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 70,
+          "z": 2,
+          "width": 290,
+          "height": 110,
+          "config": "{\"name\": \"v002\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 70, \"z\": 2, \"width\": 290, \"height\": 110}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"dim_stock.Stocks\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"d\", \"Entity\": \"dim_stock\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"d\"}}, \"Property\": \"Stocks\"}, \"Name\": \"dim_stock.Stocks\"}]}, \"drillFilterOtherVisuals\": true}}",
+          "filters": "[]"
+        },
+        {
+          "x": 330,
+          "y": 70,
+          "z": 3,
+          "width": 290,
+          "height": 110,
+          "config": "{\"name\": \"v003\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 330, \"y\": 70, \"z\": 3, \"width\": 290, \"height\": 110}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"dim_stock.Median CAGR\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"d\", \"Entity\": \"dim_stock\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"d\"}}, \"Property\": \"Median CAGR\"}, \"Name\": \"dim_stock.Median CAGR\"}]}, \"drillFilterOtherVisuals\": true}}",
+          "filters": "[]"
+        },
+        {
+          "x": 640,
+          "y": 70,
+          "z": 4,
+          "width": 290,
+          "height": 110,
+          "config": "{\"name\": \"v004\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 640, \"y\": 70, \"z\": 4, \"width\": 290, \"height\": 110}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"dim_stock.Median Volatility\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"d\", \"Entity\": \"dim_stock\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"d\"}}, \"Property\": \"Median Volatility\"}, \"Name\": \"dim_stock.Median Volatility\"}]}, \"drillFilterOtherVisuals\": true}}",
+          "filters": "[]"
+        },
+        {
+          "x": 950,
+          "y": 70,
+          "z": 5,
+          "width": 310,
+          "height": 110,
+          "config": "{\"name\": \"v005\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 950, \"y\": 70, \"z\": 5, \"width\": 310, \"height\": 110}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"dim_stock.Median Sharpe\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"d\", \"Entity\": \"dim_stock\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"d\"}}, \"Property\": \"Median Sharpe\"}, \"Name\": \"dim_stock.Median Sharpe\"}]}, \"drillFilterOtherVisuals\": true}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 200,
+          "z": 6,
+          "width": 900,
+          "height": 500,
+          "config": "{\"name\": \"v006\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 200, \"z\": 6, \"width\": 900, \"height\": 500}}], \"singleVisual\": {\"visualType\": \"scatterChart\", \"projections\": {\"Category\": [{\"queryRef\": \"dim_stock.ticker\", \"active\": true}], \"Series\": [{\"queryRef\": \"dim_stock.segment\"}], \"X\": [{\"queryRef\": \"Sum(dim_stock.volatility)\"}], \"Y\": [{\"queryRef\": \"Sum(dim_stock.cagr)\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"d\", \"Entity\": \"dim_stock\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"d\"}}, \"Property\": \"ticker\"}, \"Name\": \"dim_stock.ticker\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"d\"}}, \"Property\": \"segment\"}, \"Name\": \"dim_stock.segment\"}, {\"Aggregation\": {\"Expression\": {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"d\"}}, \"Property\": \"volatility\"}}, \"Function\": 0}, \"Name\": \"Sum(dim_stock.volatility)\"}, {\"Aggregation\": {\"Expression\": {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"d\"}}, \"Property\": \"cagr\"}}, \"Function\": 0}, \"Name\": \"Sum(dim_stock.cagr)\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Risk vs return by segment'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 940,
+          "y": 200,
+          "z": 7,
+          "width": 320,
+          "height": 240,
+          "config": "{\"name\": \"v007\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 940, \"y\": 200, \"z\": 7, \"width\": 320, \"height\": 240}}], \"singleVisual\": {\"visualType\": \"slicer\", \"projections\": {\"Values\": [{\"queryRef\": \"dim_stock.sector\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"d\", \"Entity\": \"dim_stock\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"d\"}}, \"Property\": \"sector\"}, \"Name\": \"dim_stock.sector\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Sector'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 940,
+          "y": 460,
+          "z": 8,
+          "width": 320,
+          "height": 240,
+          "config": "{\"name\": \"v008\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 940, \"y\": 460, \"z\": 8, \"width\": 320, \"height\": 240}}], \"singleVisual\": {\"visualType\": \"slicer\", \"projections\": {\"Values\": [{\"queryRef\": \"dim_stock.segment\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"d\", \"Entity\": \"dim_stock\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"d\"}}, \"Property\": \"segment\"}, \"Name\": \"dim_stock.segment\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Segment'\"}}}}}]}}}",
+          "filters": "[]"
+        }
+      ],
+      "config": "{}",
+      "filters": "[]"
+    },
+    {
+      "name": "section02",
+      "displayName": "Sectors",
+      "displayOption": 1,
+      "width": 1280,
+      "height": 720,
+      "visualContainers": [
+        {
+          "x": 20,
+          "y": 10,
+          "z": 9,
+          "width": 900,
+          "height": 50,
+          "config": "{\"name\": \"t009\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 10, \"z\": 9, \"width\": 900, \"height\": 50}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"Sector comparison\", \"textStyle\": {\"fontSize\": \"20pt\", \"fontWeight\": \"bold\"}}]}]}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 70,
+          "z": 10,
+          "width": 610,
+          "height": 310,
+          "config": "{\"name\": \"v010\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 70, \"z\": 10, \"width\": 610, \"height\": 310}}], \"singleVisual\": {\"visualType\": \"clusteredBarChart\", \"projections\": {\"Category\": [{\"queryRef\": \"sector_summary.sector\", \"active\": true}], \"Y\": [{\"queryRef\": \"Sum(sector_summary.median_sharpe)\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"s\", \"Entity\": \"sector_summary\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s\"}}, \"Property\": \"sector\"}, \"Name\": \"sector_summary.sector\"}, {\"Aggregation\": {\"Expression\": {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s\"}}, \"Property\": \"median_sharpe\"}}, \"Function\": 0}, \"Name\": \"Sum(sector_summary.median_sharpe)\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Median Sharpe by sector'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 650,
+          "y": 70,
+          "z": 11,
+          "width": 610,
+          "height": 310,
+          "config": "{\"name\": \"v011\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 650, \"y\": 70, \"z\": 11, \"width\": 610, \"height\": 310}}], \"singleVisual\": {\"visualType\": \"clusteredBarChart\", \"projections\": {\"Category\": [{\"queryRef\": \"sector_summary.sector\", \"active\": true}], \"Y\": [{\"queryRef\": \"Sum(sector_summary.median_cagr)\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"s\", \"Entity\": \"sector_summary\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s\"}}, \"Property\": \"sector\"}, \"Name\": \"sector_summary.sector\"}, {\"Aggregation\": {\"Expression\": {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"s\"}}, \"Property\": \"median_cagr\"}}, \"Function\": 0}, \"Name\": \"Sum(sector_summary.median_cagr)\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Median CAGR by sector'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 400,
+          "z": 12,
+          "width": 1240,
+          "height": 300,
+          "config": "{\"name\": \"v012\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 400, \"z\": 12, \"width\": 1240, \"height\": 300}}], \"singleVisual\": {\"visualType\": \"lineChart\", \"projections\": {\"Category\": [{\"queryRef\": \"fact_prices.date\", \"active\": true}], \"Series\": [{\"queryRef\": \"dim_stock.sector\"}], \"Y\": [{\"queryRef\": \"fact_prices.Growth of 1\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f\", \"Entity\": \"fact_prices\", \"Type\": 0}, {\"Name\": \"d\", \"Entity\": \"dim_stock\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"date\"}, \"Name\": \"fact_prices.date\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"d\"}}, \"Property\": \"sector\"}, \"Name\": \"dim_stock.sector\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"Growth of 1\"}, \"Name\": \"fact_prices.Growth of 1\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Growth of Rs 1 by sector (average of rebased stock prices)'\"}}}}}]}}}",
+          "filters": "[]"
+        }
+      ],
+      "config": "{}",
+      "filters": "[]"
+    },
+    {
+      "name": "section03",
+      "displayName": "Volatility & drawdowns",
+      "displayOption": 1,
+      "width": 1280,
+      "height": 720,
+      "visualContainers": [
+        {
+          "x": 20,
+          "y": 10,
+          "z": 13,
+          "width": 900,
+          "height": 50,
+          "config": "{\"name\": \"t013\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 10, \"z\": 13, \"width\": 900, \"height\": 50}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"Volatility and drawdowns\", \"textStyle\": {\"fontSize\": \"20pt\", \"fontWeight\": \"bold\"}}]}]}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 70,
+          "z": 14,
+          "width": 610,
+          "height": 630,
+          "config": "{\"name\": \"v014\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 70, \"z\": 14, \"width\": 610, \"height\": 630}}], \"singleVisual\": {\"visualType\": \"clusteredBarChart\", \"projections\": {\"Category\": [{\"queryRef\": \"dim_stock.ticker\", \"active\": true}], \"Y\": [{\"queryRef\": \"Sum(dim_stock.volatility)\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"d\", \"Entity\": \"dim_stock\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"d\"}}, \"Property\": \"ticker\"}, \"Name\": \"dim_stock.ticker\"}, {\"Aggregation\": {\"Expression\": {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"d\"}}, \"Property\": \"volatility\"}}, \"Function\": 0}, \"Name\": \"Sum(dim_stock.volatility)\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Annualised volatility by stock'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 650,
+          "y": 70,
+          "z": 15,
+          "width": 610,
+          "height": 390,
+          "config": "{\"name\": \"v015\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 650, \"y\": 70, \"z\": 15, \"width\": 610, \"height\": 390}}], \"singleVisual\": {\"visualType\": \"lineChart\", \"projections\": {\"Category\": [{\"queryRef\": \"fact_prices.date\", \"active\": true}], \"Y\": [{\"queryRef\": \"fact_prices.Avg Drawdown\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f\", \"Entity\": \"fact_prices\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"date\"}, \"Name\": \"fact_prices.date\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f\"}}, \"Property\": \"Avg Drawdown\"}, \"Name\": \"fact_prices.Avg Drawdown\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Drawdown from peak (select stocks with the slicer)'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 650,
+          "y": 480,
+          "z": 16,
+          "width": 610,
+          "height": 220,
+          "config": "{\"name\": \"v016\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 650, \"y\": 480, \"z\": 16, \"width\": 610, \"height\": 220}}], \"singleVisual\": {\"visualType\": \"slicer\", \"projections\": {\"Values\": [{\"queryRef\": \"dim_stock.ticker\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"d\", \"Entity\": \"dim_stock\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"d\"}}, \"Property\": \"ticker\"}, \"Name\": \"dim_stock.ticker\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Stock'\"}}}}}]}}}",
+          "filters": "[]"
+        }
+      ],
+      "config": "{}",
+      "filters": "[]"
+    },
+    {
+      "name": "section04",
+      "displayName": "High performers & pairs",
+      "displayOption": 1,
+      "width": 1280,
+      "height": 720,
+      "visualContainers": [
+        {
+          "x": 20,
+          "y": 10,
+          "z": 17,
+          "width": 900,
+          "height": 50,
+          "config": "{\"name\": \"t017\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 10, \"z\": 17, \"width\": 900, \"height\": 50}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"High performers and diversification\", \"textStyle\": {\"fontSize\": \"20pt\", \"fontWeight\": \"bold\"}}]}]}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 70,
+          "z": 18,
+          "width": 620,
+          "height": 630,
+          "config": "{\"name\": \"v018\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 70, \"z\": 18, \"width\": 620, \"height\": 630}}], \"singleVisual\": {\"visualType\": \"tableEx\", \"projections\": {\"Values\": [{\"queryRef\": \"high_performers.ticker\"}, {\"queryRef\": \"high_performers.sector\"}, {\"queryRef\": \"Sum(high_performers.cagr)\"}, {\"queryRef\": \"Sum(high_performers.volatility)\"}, {\"queryRef\": \"Sum(high_performers.sharpe)\"}, {\"queryRef\": \"Sum(high_performers.beat_rate)\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"h\", \"Entity\": \"high_performers\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"h\"}}, \"Property\": \"ticker\"}, \"Name\": \"high_performers.ticker\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"h\"}}, \"Property\": \"sector\"}, \"Name\": \"high_performers.sector\"}, {\"Aggregation\": {\"Expression\": {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"h\"}}, \"Property\": \"cagr\"}}, \"Function\": 0}, \"Name\": \"Sum(high_performers.cagr)\"}, {\"Aggregation\": {\"Expression\": {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"h\"}}, \"Property\": \"volatility\"}}, \"Function\": 0}, \"Name\": \"Sum(high_performers.volatility)\"}, {\"Aggregation\": {\"Expression\": {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"h\"}}, \"Property\": \"sharpe\"}}, \"Function\": 0}, \"Name\": \"Sum(high_performers.sharpe)\"}, {\"Aggregation\": {\"Expression\": {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"h\"}}, \"Property\": \"beat_rate\"}}, \"Function\": 0}, \"Name\": \"Sum(high_performers.beat_rate)\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'14 consistently high-performing stocks'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 660,
+          "y": 70,
+          "z": 19,
+          "width": 600,
+          "height": 630,
+          "config": "{\"name\": \"v019\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 660, \"y\": 70, \"z\": 19, \"width\": 600, \"height\": 630}}], \"singleVisual\": {\"visualType\": \"tableEx\", \"projections\": {\"Values\": [{\"queryRef\": \"low_corr_pairs.stock_a\"}, {\"queryRef\": \"low_corr_pairs.stock_b\"}, {\"queryRef\": \"low_corr_pairs.sector_a\"}, {\"queryRef\": \"low_corr_pairs.sector_b\"}, {\"queryRef\": \"Sum(low_corr_pairs.corr)\"}, {\"queryRef\": \"Sum(low_corr_pairs.max_yearly_corr)\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"l\", \"Entity\": \"low_corr_pairs\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"l\"}}, \"Property\": \"stock_a\"}, \"Name\": \"low_corr_pairs.stock_a\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"l\"}}, \"Property\": \"stock_b\"}, \"Name\": \"low_corr_pairs.stock_b\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"l\"}}, \"Property\": \"sector_a\"}, \"Name\": \"low_corr_pairs.sector_a\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"l\"}}, \"Property\": \"sector_b\"}, \"Name\": \"low_corr_pairs.sector_b\"}, {\"Aggregation\": {\"Expression\": {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"l\"}}, \"Property\": \"corr\"}}, \"Function\": 0}, \"Name\": \"Sum(low_corr_pairs.corr)\"}, {\"Aggregation\": {\"Expression\": {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"l\"}}, \"Property\": \"max_yearly_corr\"}}, \"Function\": 0}, \"Name\": \"Sum(low_corr_pairs.max_yearly_corr)\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'13 low-correlated cross-sector pairs'\"}}}}}]}}}",
+          "filters": "[]"
+        }
+      ],
+      "config": "{}",
+      "filters": "[]"
+    }
+  ]
+}

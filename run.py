@@ -44,7 +44,11 @@ def main():
     fact = prices.stack().rename("adj_close").reset_index().rename(columns={"level_0": "date", "level_1": "ticker", "Date": "date"})
     fact.columns = ["date", "ticker", "adj_close"]
     fact["daily_return"] = daily_returns(prices).stack().reindex(pd.MultiIndex.from_frame(fact[["date", "ticker"]])).values
-    fact.to_csv(PBI / "fact_prices.csv", index=False)
+    keys = pd.MultiIndex.from_frame(fact[["date", "ticker"]])
+    rebased = prices / prices.apply(lambda s: s.dropna().iloc[0])      # growth of Rs 1 from each stock's first day
+    fact["growth_of_1"] = rebased.stack().reindex(keys).values
+    fact["drawdown"] = drawdowns.stack().reindex(keys).values
+    fact.round(6).to_csv(PBI / "fact_prices.csv", index=False)
     seg.reset_index().round(4).to_csv(PBI / "dim_stock.csv", index=False)
     low.round(4).to_csv(PBI / "low_corr_pairs.csv", index=False)
 

@@ -1,0 +1,481 @@
+{
+  "compatibilityLevel": 1567,
+  "model": {
+    "culture": "en-US",
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "sourceQueryCulture": "en-US",
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "tables": [
+      {
+        "name": "fact_prices",
+        "columns": [
+          {
+            "name": "date",
+            "dataType": "dateTime",
+            "sourceColumn": "date",
+            "summarizeBy": "none",
+            "formatString": "yyyy-mm-dd"
+          },
+          {
+            "name": "ticker",
+            "dataType": "string",
+            "sourceColumn": "ticker",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "adj_close",
+            "dataType": "double",
+            "sourceColumn": "adj_close",
+            "summarizeBy": "sum",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "daily_return",
+            "dataType": "double",
+            "sourceColumn": "daily_return",
+            "summarizeBy": "none",
+            "formatString": "0.00%"
+          },
+          {
+            "name": "growth_of_1",
+            "dataType": "double",
+            "sourceColumn": "growth_of_1",
+            "summarizeBy": "none",
+            "formatString": "0.00"
+          },
+          {
+            "name": "drawdown",
+            "dataType": "double",
+            "sourceColumn": "drawdown",
+            "summarizeBy": "none",
+            "formatString": "0.0%"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "fact_prices",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(Web.Contents(\"https://raw.githubusercontent.com/obnox-cloud9/nifty50-investment-intelligence/main/powerbi/fact_prices.csv\"), [Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
+                "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    Typed = Table.TransformColumnTypes(Promoted, {{\"date\", type date}, {\"ticker\", type text}, {\"adj_close\", type number}, {\"daily_return\", type number}, {\"growth_of_1\", type number}, {\"drawdown\", type number}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Avg Daily Return",
+            "expression": "AVERAGE ( fact_prices[daily_return] )",
+            "formatString": "0.000%"
+          },
+          {
+            "name": "Annualised Volatility",
+            "expression": "STDEV.S ( fact_prices[daily_return] ) * SQRT ( 252 )",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "Growth of 1",
+            "expression": "AVERAGE ( fact_prices[growth_of_1] )",
+            "formatString": "0.00"
+          },
+          {
+            "name": "Avg Drawdown",
+            "expression": "AVERAGE ( fact_prices[drawdown] )",
+            "formatString": "0.0%"
+          }
+        ]
+      },
+      {
+        "name": "dim_stock",
+        "columns": [
+          {
+            "name": "ticker",
+            "dataType": "string",
+            "sourceColumn": "ticker",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "sector",
+            "dataType": "string",
+            "sourceColumn": "sector",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "start",
+            "dataType": "dateTime",
+            "sourceColumn": "start",
+            "summarizeBy": "none",
+            "formatString": "yyyy-mm-dd"
+          },
+          {
+            "name": "end",
+            "dataType": "dateTime",
+            "sourceColumn": "end",
+            "summarizeBy": "none",
+            "formatString": "yyyy-mm-dd"
+          },
+          {
+            "name": "years",
+            "dataType": "double",
+            "sourceColumn": "years",
+            "summarizeBy": "none",
+            "formatString": "0.0"
+          },
+          {
+            "name": "cagr",
+            "dataType": "double",
+            "sourceColumn": "cagr",
+            "summarizeBy": "none",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "volatility",
+            "dataType": "double",
+            "sourceColumn": "volatility",
+            "summarizeBy": "none",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "max_drawdown",
+            "dataType": "double",
+            "sourceColumn": "max_drawdown",
+            "summarizeBy": "none",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "sharpe",
+            "dataType": "double",
+            "sourceColumn": "sharpe",
+            "summarizeBy": "none",
+            "formatString": "0.00"
+          },
+          {
+            "name": "sortino",
+            "dataType": "double",
+            "sourceColumn": "sortino",
+            "summarizeBy": "none",
+            "formatString": "0.00"
+          },
+          {
+            "name": "segment",
+            "dataType": "string",
+            "sourceColumn": "segment",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "beat_rate",
+            "dataType": "double",
+            "sourceColumn": "beat_rate",
+            "summarizeBy": "none",
+            "formatString": "0.0%"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "dim_stock",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(Web.Contents(\"https://raw.githubusercontent.com/obnox-cloud9/nifty50-investment-intelligence/main/powerbi/dim_stock.csv\"), [Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
+                "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    Typed = Table.TransformColumnTypes(Promoted, {{\"ticker\", type text}, {\"sector\", type text}, {\"start\", type date}, {\"end\", type date}, {\"years\", type number}, {\"cagr\", type number}, {\"volatility\", type number}, {\"max_drawdown\", type number}, {\"sharpe\", type number}, {\"sortino\", type number}, {\"segment\", type text}, {\"beat_rate\", type number}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Stocks",
+            "expression": "DISTINCTCOUNT ( dim_stock[ticker] )",
+            "formatString": "0"
+          },
+          {
+            "name": "Median CAGR",
+            "expression": "MEDIAN ( dim_stock[cagr] )",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "Median Volatility",
+            "expression": "MEDIAN ( dim_stock[volatility] )",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "Median Max Drawdown",
+            "expression": "MEDIAN ( dim_stock[max_drawdown] )",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "Median Sharpe",
+            "expression": "MEDIAN ( dim_stock[sharpe] )",
+            "formatString": "0.00"
+          },
+          {
+            "name": "High Performers",
+            "expression": "VAR med = CALCULATE ( MEDIAN ( dim_stock[sharpe] ), ALL ( dim_stock ) )\nRETURN CALCULATE ( [Stocks], FILTER ( dim_stock, dim_stock[beat_rate] > 0.5 && dim_stock[sharpe] > med ) )",
+            "formatString": "0"
+          }
+        ]
+      },
+      {
+        "name": "sector_summary",
+        "columns": [
+          {
+            "name": "sector",
+            "dataType": "string",
+            "sourceColumn": "sector",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "stocks",
+            "dataType": "int64",
+            "sourceColumn": "stocks",
+            "summarizeBy": "sum",
+            "formatString": "0"
+          },
+          {
+            "name": "median_cagr",
+            "dataType": "double",
+            "sourceColumn": "median_cagr",
+            "summarizeBy": "none",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "median_vol",
+            "dataType": "double",
+            "sourceColumn": "median_vol",
+            "summarizeBy": "none",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "median_mdd",
+            "dataType": "double",
+            "sourceColumn": "median_mdd",
+            "summarizeBy": "none",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "median_sharpe",
+            "dataType": "double",
+            "sourceColumn": "median_sharpe",
+            "summarizeBy": "none",
+            "formatString": "0.00"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "sector_summary",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(Web.Contents(\"https://raw.githubusercontent.com/obnox-cloud9/nifty50-investment-intelligence/main/outputs/sector_summary.csv\"), [Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
+                "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    Typed = Table.TransformColumnTypes(Promoted, {{\"sector\", type text}, {\"stocks\", Int64.Type}, {\"median_cagr\", type number}, {\"median_vol\", type number}, {\"median_mdd\", type number}, {\"median_sharpe\", type number}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "high_performers",
+        "columns": [
+          {
+            "name": "ticker",
+            "dataType": "string",
+            "sourceColumn": "ticker",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "sector",
+            "dataType": "string",
+            "sourceColumn": "sector",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "start",
+            "dataType": "dateTime",
+            "sourceColumn": "start",
+            "summarizeBy": "none",
+            "formatString": "yyyy-mm-dd"
+          },
+          {
+            "name": "end",
+            "dataType": "dateTime",
+            "sourceColumn": "end",
+            "summarizeBy": "none",
+            "formatString": "yyyy-mm-dd"
+          },
+          {
+            "name": "years",
+            "dataType": "double",
+            "sourceColumn": "years",
+            "summarizeBy": "none",
+            "formatString": "0.0"
+          },
+          {
+            "name": "cagr",
+            "dataType": "double",
+            "sourceColumn": "cagr",
+            "summarizeBy": "none",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "volatility",
+            "dataType": "double",
+            "sourceColumn": "volatility",
+            "summarizeBy": "none",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "max_drawdown",
+            "dataType": "double",
+            "sourceColumn": "max_drawdown",
+            "summarizeBy": "none",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "sharpe",
+            "dataType": "double",
+            "sourceColumn": "sharpe",
+            "summarizeBy": "none",
+            "formatString": "0.00"
+          },
+          {
+            "name": "sortino",
+            "dataType": "double",
+            "sourceColumn": "sortino",
+            "summarizeBy": "none",
+            "formatString": "0.00"
+          },
+          {
+            "name": "segment",
+            "dataType": "string",
+            "sourceColumn": "segment",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "beat_rate",
+            "dataType": "double",
+            "sourceColumn": "beat_rate",
+            "summarizeBy": "none",
+            "formatString": "0.0%"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "high_performers",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(Web.Contents(\"https://raw.githubusercontent.com/obnox-cloud9/nifty50-investment-intelligence/main/outputs/high_performers.csv\"), [Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
+                "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    Typed = Table.TransformColumnTypes(Promoted, {{\"ticker\", type text}, {\"sector\", type text}, {\"start\", type date}, {\"end\", type date}, {\"years\", type number}, {\"cagr\", type number}, {\"volatility\", type number}, {\"max_drawdown\", type number}, {\"sharpe\", type number}, {\"sortino\", type number}, {\"segment\", type text}, {\"beat_rate\", type number}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "low_corr_pairs",
+        "columns": [
+          {
+            "name": "stock_a",
+            "dataType": "string",
+            "sourceColumn": "stock_a",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "stock_b",
+            "dataType": "string",
+            "sourceColumn": "stock_b",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "corr",
+            "dataType": "double",
+            "sourceColumn": "corr",
+            "summarizeBy": "none",
+            "formatString": "0.000"
+          },
+          {
+            "name": "sector_a",
+            "dataType": "string",
+            "sourceColumn": "sector_a",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "sector_b",
+            "dataType": "string",
+            "sourceColumn": "sector_b",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "cross_sector",
+            "dataType": "boolean",
+            "sourceColumn": "cross_sector",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "max_yearly_corr",
+            "dataType": "double",
+            "sourceColumn": "max_yearly_corr",
+            "summarizeBy": "none",
+            "formatString": "0.000"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "low_corr_pairs",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(Web.Contents(\"https://raw.githubusercontent.com/obnox-cloud9/nifty50-investment-intelligence/main/powerbi/low_corr_pairs.csv\"), [Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
+                "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    Typed = Table.TransformColumnTypes(Promoted, {{\"stock_a\", type text}, {\"stock_b\", type text}, {\"corr\", type number}, {\"sector_a\", type text}, {\"sector_b\", type text}, {\"cross_sector\", type logical}, {\"max_yearly_corr\", type number}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "fact_to_stock",
+        "fromTable": "fact_prices",
+        "fromColumn": "ticker",
+        "toTable": "dim_stock",
+        "toColumn": "ticker"
+      }
+    ],
+    "annotations": [
+      {
+        "name": "PBI_QueryOrder",
+        "value": "[\"fact_prices\", \"dim_stock\", \"sector_summary\", \"high_performers\", \"low_corr_pairs\"]"
+      }
+    ]
+  }
+}

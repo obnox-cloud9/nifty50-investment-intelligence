@@ -1,10 +1,17 @@
-# Power BI dashboard: build guide
+# Power BI dashboard
+
+**Quick start:** open `NIFTY50_Dashboard.pbip` in Power BI Desktop and click **Home → Refresh**. The data loads from this repo's raw CSVs on GitHub. If Power BI asks how to connect to `raw.githubusercontent.com`, choose **Anonymous**. If an older Desktop version won't open `.pbip` files, turn on *File → Options → Preview features → Power BI Project (.pbip) save option* and restart.
+
+**Pages:** Overview (KPI cards, risk vs return scatter, sector and segment slicers) · Sectors (median Sharpe and CAGR by sector, growth of Rs 1 by sector) · Volatility & drawdowns (volatility by stock, drawdown over time with a stock slicer) · High performers & pairs (the 14 stocks and 13 pairs).
+
+The rest of this file documents the model, in case you want to rebuild it by hand.
+
 
 `run.py` writes three Power BI-ready tables to this folder:
 
 | File | Grain | Key columns |
 |---|---|---|
-| `fact_prices.csv` | one row per stock per trading day (123K rows) | date, ticker, adj_close, daily_return |
+| `fact_prices.csv` | one row per stock per trading day (123K rows) | date, ticker, adj_close, daily_return, growth_of_1, drawdown |
 | `dim_stock.csv` | one row per stock | ticker, sector, cagr, volatility, max_drawdown, sharpe, sortino, beat_rate, segment |
 | `low_corr_pairs.csv` | one row per selected pair | stock_a, stock_b, corr, max_yearly_corr |
 
